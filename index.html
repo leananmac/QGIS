@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muteesa I University Campus Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-main">
+            <div class="header-left">
+                <button id="toggle-sidebar" class="hamburger" aria-label="Toggle sidebar">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <div class="brand-wrapper">
+                    <h1 class="brand">Muteesa l Royal University Campus Map</h1>
+                    <span class="brand-subtitle">Interactive Navigation</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="search-wrap">
+                    <input id="facility-search" class="search-input" type="search" placeholder="Search facilities or locations..." autocomplete="off">
+                    <div id="autocomplete-dropdown" class="autocomplete-dropdown"></div>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <div class="filter-controls">
+                        <button id="select-all" class="chip-button" title="Select all filters">All</button>
+                        <button id="select-none" class="chip-button" title="Clear filters">Clear</button>
+                    </div>
+                    <div class="results-wrapper">
+                        <span id="results-count" class="results-badge">0</span>
+                        <span class="results-label">Results</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="section">
+                <h2>⭐ Favorites</h2>
+                <div id="favorites-list" class="favorites-list">
+                    <p style="color: var(--text-secondary); font-size: 0.875rem;">No favorites yet. Click ★ to add facilities.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔍 Filter Facilities</h2>
+                <div class="filter-options">
+                    <label>
+                        <input type="checkbox" class="filter-checkbox" value="academic" checked> Academic
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filter-checkbox" value="residential" checked> Residential
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filter-checkbox" value="service" checked> Service
+                    </label>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🗺️ Get Directions</h2>
+                <div class="routing-controls">
+                    <select id="start-point" class="routing-select" title="Select starting point" aria-label="Select starting point">
+                        <option value="">Select starting point...</option>
+                    </select>
+                    
+                    <select id="end-point" class="routing-select" title="Select destination" aria-label="Select destination">
+                        <option value="">Select destination...</option>
+                    </select>
+                    
+                    <div class="routing-row">
+                        <button id="use-my-location" class="routing-button" title="Use my location" aria-label="Use my location">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i> My Location
+                        </button>
+                        <button id="swap-route" class="routing-button">🔄 Swap</button>
+                    </div>
+                    
+                    <button id="get-directions" class="routing-button">Get Directions</button>
+                    <button id="clear-route" class="routing-button">Clear Route</button>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🏫 Campus Facilities</h2>
+                <ul id="facilities-list"></ul>
+            </div>
+        </div>
+        
+        <div id="map">
+            <div class="map-controls">
+                <button id="locate-me" class="fab-button" title="Locate me" aria-label="Locate me">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Muteesa I University Campus Map | GIS Project</p>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/data.js"></script>
+</body>
+</html>
